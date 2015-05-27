@@ -4,7 +4,7 @@
   "description" : "A common log format logger for anything abiding by HTTP::Server",
   "depends" : [],
   "provides" : {
-      "HTTP::Server::Loger": "lib/HTTP/Server/Logger.pm6"
+      "HTTP::Server::Logger": "lib/HTTP/Server/Logger.pm6"
   },
   "source-url" : "git://github.com/tony-o/perl6-http-server-logger.git"
 }
