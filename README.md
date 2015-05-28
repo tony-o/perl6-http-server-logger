@@ -45,7 +45,7 @@ need some custom formatting for Z?
 ```perl6
 my HTTP::Server::Logger $log .= new(fmt => '%t %Z');
 
-$log.custom{Z} = sub ($data) { return $data.UC; };
+$log.custom<Z> = sub ($data) { return $data.UC; };
 
 $log.log({
   t => 'something t',
