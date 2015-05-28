@@ -10,7 +10,16 @@ multi sub format(Str $fmt) is export {
 
 multi sub format(%data) is export {
   my $str = '';
-  while $format ~~ m:c/ ( <!after '\\'> '%' ) $<status>=['!'? [\d+ % ',']+ ]? $<param>=[ \{ .+? \} ]**0..1 $<code>=\w / {
+  while $format ~~ m:c/ 
+                    ( <!after '\\'> '%' ) 
+                    $<status>=[
+                      '!'? 
+                      [\d+ % ',']+ 
+                    ]? 
+                    $<param>=[ 
+                      \{ .+? \} ]**0..1 
+                      $<code>=\w 
+                   / {
     my $status = $<status>.subst(/^'!'/,'');
     my $param  = $<param>.substr(1,*-1);
     my $code   = $<code>;
