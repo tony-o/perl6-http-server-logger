@@ -1,18 +1,19 @@
 unit module HTTP::Server::Logger;
 
-my @fmt = '%h %l %u %t "%r" %>s %b'.split(' ');
+use DateTime::Format;
+
+my $format  = '%h %l %u %t "%r" %>s %b'.split(' ');
 
 multi sub format(Str $fmt) is export {
-  @fmt = $fmt.split(' ');
+  $format = $fmt;
 }
 
 multi sub format(%data) is export {
   my $str = '';
-  for @fmt <-> $f {
-    for %data.keys -> $d {
-      $f .=subst("$d", %data{$d});
-    }
-    $str ~= "$f ";
+  while $format ~~ m:c/ ( <!after '\\'> '%' ) $<status>=['!'? [\d+ % ',']+ ]? $<param>=[ \{ .+? \} ]**0..1 $<code>=\w / {
+    my $status = $<status>.subst(/^'!'/,'');
+    my $param  = $<param>.substr(1,*-1);
+    my $code   = $<code>;
   }
   return $str.trim;
 }
@@ -25,7 +26,7 @@ sub hook($app) is export {
       '%h'  => try { $res.connection.remote_address; } // 'unavailable',
       '%l'  => '-',
       '%u'  => '-',
-      '%t'  => "{sprintf('%2d', $time.day)}/{@mont[$time.month]}/{sprintf('%04d', $time.year)}:{sprintf('%02d',$time.hour)}:{sprintf('%02d',$time.minute)}:{sprintf('%02d',$time.second)} {$*TZ < 0 ?? '-' !! '+'}{sprintf('%04d', ($*TZ/3600).abs * 100)}",
+      '%t'  => strftime('%d/%b/%Y:%k:%M:%S %z', $time),
       '%r'  => "{$req.method // 'ERR'} {$req.resource // ''} {$req.version // ''}",
       '%>s' => $res.status // '-1',
       '%b'  => $res.bytes // '-',
