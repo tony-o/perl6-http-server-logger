@@ -24,5 +24,6 @@ script:
     - zef install --deps-only .
     # tests that module passes tests *before* compile
     #- prove -v -s -j$(test-jobs) -e "perl6 --ll-exception -Ilib" $(test-files)
+    - perl6 -Ilib t/01-pretty.t
     - zef test .
     # runs tests again, but catches some heisenbugs (mostly with precompiled modules)
