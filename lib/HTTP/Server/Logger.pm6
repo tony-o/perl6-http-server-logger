@@ -61,7 +61,6 @@ class HTTP::Server::Logger {
       }
       my $d = %data{$code};
       if $code eq 't' {
-        $param.Str.perl.say;
         $d = strftime($param eq '' ?? '%d/%b/%Y:%k:%M:%S %z' !! $param.Str, $d);
       }
       if $d ~~ Hash {
@@ -110,7 +109,6 @@ class HTTP::Server::Logger {
         'I'  => '-',
         'O'  => '-',
       });
-      $fmt.say;
       return $fmt;
     };
   };

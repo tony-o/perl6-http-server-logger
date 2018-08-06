@@ -25,4 +25,4 @@ class test {
 my $a = test.new;
 $a.middleware($l.logger);
 
-ok $a.last ~~ / ^^ '[' .*? \d+ .*? '] - /' $$ /, 'Format matches';
+ok $a.last ~~ / ^^ '[' .*? \d+ .*? '] ' \d+ '/' \d+ '/' \d+ ' ' \d+ ':' \d+ ' /' $$ /, 'Format matches';
