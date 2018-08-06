@@ -23,4 +23,4 @@ my $a = test.new;
 $a.middleware($l.logger);
 
 say $a.last.perl;
-ok $a.last ~~ / ^^ '- - - ' \d ** 2 '/' \w ** 3 '/' \d ** 4 ':' \d ** 2 ':' \d ** 2 ':' \d ** 2 ' ' ('+'|'-') \d ** 4 ' "GET / HTTP/1.0" 200 20' $$ /, 'Format matches';
+ok $a.last ~~ / ^^ '- - - ' \d ** 2 '/' \w ** 3 '/' \d ** 4 ':' \d ** 2 ':' \d ** 2 ':' \d ** 2 ' ' (('+'|'-') \d ** 4 || 'Z') ' "GET / HTTP/1.0" 200 20' $$ /, 'Format matches';
