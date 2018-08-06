@@ -1,5 +1,7 @@
 # HTTP::Server::Logger
 
+[![Build Status](https://travis-ci.org/tony-o/perl6-http-server-logger.svg?branch=master)](https://travis-ci.org/tony-o/perl6-http-server-logger)
+
 Uses apache log format for logging, you can specify custom formats also.
 
 By default this module uses the common log format specified by Apache.
