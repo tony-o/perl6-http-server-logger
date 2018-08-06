@@ -23,5 +23,6 @@ script:
     # Pull in the dependencies before running tests
     - zef install --deps-only .
     # tests that module passes tests *before* compile
-    - prove -v -s -j$(test-jobs) -e "perl6 --ll-exception -Ilib" $(test-files)
+    #- prove -v -s -j$(test-jobs) -e "perl6 --ll-exception -Ilib" $(test-files)
+    - zef test .
     # runs tests again, but catches some heisenbugs (mostly with precompiled modules)
