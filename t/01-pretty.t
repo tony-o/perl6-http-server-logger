@@ -1,4 +1,3 @@
-use lib 'lib';
 use HTTP::Server::Logger;
 use Test;
 
@@ -25,4 +24,5 @@ class test {
 my $a = test.new;
 $a.middleware($l.logger);
 
+say $a.last.perl;
 ok $a.last ~~ / ^^ '[' .*? \d+ .*? '] ' \d+ '/' \d+ '/' \d+ ' ' \d+ ':' \d+ ' /' $$ /, 'Format matches';

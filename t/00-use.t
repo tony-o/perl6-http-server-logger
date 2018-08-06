@@ -1,4 +1,3 @@
-use lib 'lib';
 use HTTP::Server::Logger;
 use Test;
 
