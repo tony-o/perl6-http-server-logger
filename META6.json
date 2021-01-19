@@ -4,7 +4,7 @@
   "version" : "0.1.4",
   "description" : "A common log format logger for anything abiding by HTTP::Server",
   "depends" : ["DateTime::Format"],
-  "auth": "github:tony-o",
+  "auth": "zef:tony-o",
   "provides" : {
       "HTTP::Server::Logger": "lib/HTTP/Server/Logger.pm6"
   },
